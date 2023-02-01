@@ -7,61 +7,84 @@ public class BugZap extends PApplet
 
 	public void settings()
 	{
-		size(500, 500);
+		size(1000, 1000);
+
 	}
 
-	public void setup() {
-		colorMode(HSB);
-		background(0);
+	float playerX = 450;
+	float playerY = 900;
+	float playerWidth = 100;
 
-		x1 = random(0, width);
-		x2 = random(0, width);
-		y1 = random(0, height);
-		y2 = random(0, height);
 
-		float range = 5;
+	public void playerDraw(float x, float y, float w)
+	{
+		float h = w / 4;
+		strokeWeight(h);
+		stroke(255);
+		line(x, y, x+w, y);
 
-		x1dir = random(-range, range);
-		x2dir = random(-range, range);
-		y1dir = random(-range, range);
-		y2dir = random(-range, range);
+	}
 
-		smooth();
+	public void bugDraw(float x1, float y1, float x2, float y2, float x3, float y3)
+	{
+		strokeWeight(1);
+		triangle(x1, y2, x2, y2, x3, y3);
+
+	}
+
+	public void setup()
+	{
+
 		
 	}
 
-	float x1, y1, x2, y2;
-	float x1dir, x2dir, y1dir, y2dir;
-	float c = 0;
-	
+	public void keyPressed()
+	{
+		if (keyCode == LEFT)
+		{
+			System.out.println("Left arrow pressed");
+			playerX = playerX - 20;
+
+			if(playerX < 0)
+			{
+				playerX = 0;
+
+			}
+		}
+		if (keyCode == RIGHT)
+		{
+			System.out.println("Right arrow pressed");
+			playerX = playerX + 20;
+
+			if(playerX > 900)
+			{
+				playerX = 900;
+
+			}
+		}
+		if (key == ' ')
+		{
+			System.out.println("SPACE key pressed");
+			strokeWeight(1);
+			stroke(255);
+			line(playerX+50, playerY, playerX+50, 0);
+		}
+	}
+
+
 	public void draw()
-	{	
-		strokeWeight(2);
-		stroke(c, 255, 255);
-		c = (c + 1f) % 255;
-		line(x1, y1, x2, y2);
+	{			
+		float tX = random(100, 900);
+		float tY = random(100, 900);
 
-		x1 += x1dir;
-		x2 += x2dir;
-		y1 += y1dir;
-		y2 += y2dir;
+		background(0);
 		
-		if (x1 < 0 || x1 > width)
-		{
-			x1dir = - x1dir;
-		}
-		if (y1 < 0 || y1 > height)
-		{
-			y1dir = - y1dir;
+		playerDraw(playerX, playerY, playerWidth);
+
+		if ((frameCount % 10) == 0)
+		{	
+			bugDraw(tX-50, tY-50, tX+50, tY-50, tX, tY);
 		}
 
-		if (x2 < 0 || x2 > width)
-		{
-			x2dir = - x2dir;
-		}
-		if (y2 < 0 || y2 > height)
-		{
-			y2dir = - y2dir;
-		}
-	}
+	}	
 }
