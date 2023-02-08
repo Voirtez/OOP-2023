@@ -14,16 +14,28 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new BugZap());
     }
+
+	public static void Loops()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Loops());
+    }
+
+	public static void ifExercise()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new ifExercise());
+    }
+
+	public static void loopExercise()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new loopExercise());
+    }
 	
 	public static void main(String[] args)
 	{
-		System.out.println("Hello world");
-		
-		Dog penny = new Dog();
-		penny.setName("Penny");
-		penny.speak();
-
-		bugZap();
+		loopExercise();
 	}
 	
 }

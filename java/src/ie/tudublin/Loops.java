@@ -2,13 +2,17 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 
-public class BugZap extends PApplet {
-	public void settings() {
+public class Loops extends PApplet
+{
+	public void settings()
+	{
 		size(1000, 1000);
 	}
 
-	public void setup() {
+	public void setup()
+	{
 		reset();
+
 	}
 
 	float playerX, playerY;
@@ -54,7 +58,8 @@ public class BugZap extends PApplet {
 
 	}
 
-	void drawPlayer(float x, float y, float w) {
+	void drawPlayer(float x, float y, float w)
+	{
 		stroke(255);
 		float playerHeight = w / 2;
 		line(x - halfPlayerWidth, y + playerHeight, x + halfPlayerWidth, y + playerHeight);
@@ -71,16 +76,21 @@ public class BugZap extends PApplet {
 
 	}
 
-	public void keyPressed() {
+	public void keyPressed()
+	{
 		
 		if (keyCode == LEFT) {
-			if (playerX > halfPlayerWidth) {
+			if (playerX > halfPlayerWidth)
+			{
 				playerX -= playerSpeed;
+
 			}
 		}
 		if (keyCode == RIGHT) {
-			if (playerX < width - halfPlayerWidth) {
+			if (playerX < width - halfPlayerWidth)
+			{
 				playerX += playerSpeed;
+
 			}
 		}
 		if (keyCode == ' ')
@@ -90,22 +100,29 @@ public class BugZap extends PApplet {
 				line(playerX, playerY, playerX, bugY);
 				score ++;
 				resetBug();
+
 			}
 			else
 			{
 				line(playerX, playerY, playerX, 0);
+
 			}
 		}
 	}
 
-	void moveBug() {
+	void moveBug()
+	{
 		if ((frameCount % 30) == 0) {
 			bugX += random(-5, 5);
-			if (bugX < halfBugWidth) {
+			if (bugX < halfBugWidth)
+			{
 				bugX = halfBugWidth;
+
 			}
-			if (bugX > width - halfBugWidth) {
+			if (bugX > width - halfBugWidth)
+			{
 				bugX = width - halfBugWidth;
+
 			}
 			bugY += 2;
 		}
@@ -113,7 +130,8 @@ public class BugZap extends PApplet {
 
 	int gameMode = 0;
 
-	public void draw() {
+	public void draw()
+	{
 		background(0);
 		fill(255);
 		text("Score: " + score, 50, 100);
