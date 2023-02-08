@@ -11,7 +11,7 @@ public class loopExercise extends PApplet
 
 	public void setup()
     {
-        //colorMode(HSB);
+        colorMode(HSB);
         background(0);
 	}
 
@@ -57,8 +57,18 @@ public class loopExercise extends PApplet
         }
         */
 
+        // grid of circles that change colour diagonally
+        for(int i = 0; i < 10; i++)
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                fill(i * 25, 255, 255);
+                ellipse(i * 50 + 25, j * 50 + 25, 50, 50);
+            }
+        }
+
         // blue and dark blue checkerboard
-        
+        /*
         for(int i = 0; i < 10; i++)
         {
             for(int j = 0; j < 10; j++)
@@ -74,5 +84,6 @@ public class loopExercise extends PApplet
                 rect(i * 50, j * 50, 50, 50);
             }
         }
+        */
 	}
 }
