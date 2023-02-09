@@ -64,6 +64,7 @@ public class loopExercise extends PApplet
             {
                 fill(i * 25, 255, 255);
                 ellipse(i * 50 + 25, j * 50 + 25, 50, 50);
+
             }
         }
 
