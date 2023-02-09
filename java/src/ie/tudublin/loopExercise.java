@@ -6,7 +6,9 @@ public class loopExercise extends PApplet
 {
     public void settings()
 	{
-		size(500, 500);
+		//size(500, 500);
+        fullScreen(SPAN);
+        
 	}
 
 	public void setup()
@@ -57,16 +59,23 @@ public class loopExercise extends PApplet
         }
         */
 
-        // grid of circles that change colour diagonally
-        for(int i = 0; i < 10; i++)
-        {
-            for(int j = 0; j < 10; j++)
-            {
-                fill(i * 25, 255, 255);
-                ellipse(i * 50 + 25, j * 50 + 25, 50, 50);
+        // grid of coloured circles
+        int numCircles = (int) max(1, mouseX / 50.0f);
+        float d = width / (float) numCircles;
 
+        for(int i = 0; i < numCircles; i++)
+        {
+            for(int j = 0; j < numCircles; j++)
+            {
+                float x = (d * 0.5f) + (d * j);
+                float y = (d * 0.5f) + (d * i);
+                float c = ((i + j) / ((numCircles - 1) * 2.0f)) * 255.0f;
+                fill(c, 255, 255);
+                circle(x, y, d);
             }
+
         }
+
 
         // blue and dark blue checkerboard
         /*
