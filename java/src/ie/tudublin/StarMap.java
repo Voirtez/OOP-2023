@@ -73,6 +73,9 @@ public class StarMap extends PApplet
 			line(x-5, y, x+5, y);
 			line(x, y-5, x, y+5);
 
+			fill(255);
+			text(s.getDisplayName(), x + 5, y + 5);
+
 		}
 	}
 	
