@@ -1,10 +1,9 @@
 package ie.tudublin;
 
-import com.jogamp.opengl.FBObject.RenderAttachment;
-
+import processing.core.PApplet;
 import processing.data.TableRow;
 
-public class Star
+public class Star extends PApplet
 {
     private boolean hab;
     private String displayName;
@@ -38,7 +37,27 @@ public class Star
         this.absMag = absMag;
     }
 
-    
+    public void render(PApplet p)
+    {
+        float x = map(xG, -5, 5, 50, p.width-50);
+        float y = map(yG, -5, 5, 50, p.height-50);
+
+        p.stroke(255, 0, 0);
+        p.noFill();
+        p.circle(x, y, absMag);
+
+        p.fill(255);
+        p.textSize(11);
+        p.textAlign(LEFT, CENTER);
+        p.text(displayName, x, y);
+
+        p.stroke(255, 255, 0);
+		p.line(x-5, y, x+5, y);
+		p.line(x, y-5, x, y+5);
+
+    }
+
+    @Override
     public String toString()
     {
         return hab + "\t" + displayName + "\t" + distance + "\t" + xG + "\t" + yG + "\t" + zG + "\t" + absMag;
