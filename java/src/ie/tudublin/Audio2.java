@@ -19,7 +19,8 @@ public class Audio2 extends PApplet
 
     public void settings()
     {
-        size(1024, 1024, P3D);
+        //size(1024, 1024, P3D);
+        fullScreen(SPAN);
 
     }
 
@@ -30,7 +31,8 @@ public class Audio2 extends PApplet
         ab = ai.mix;
         lerpedBuffer = new float[width];
 
-        fft = new FFT(width, 44100);
+
+        //fft = new FFT(width, 44100);
 
     }
 
@@ -52,6 +54,7 @@ public class Audio2 extends PApplet
             //line(i, half + f, i, half); // Reactive only below the mid-line
         }
 
+        /*
         fft.forward(ab);
         stroke(255);
 
@@ -66,6 +69,7 @@ public class Audio2 extends PApplet
             }
         }
 
+        
         float freq = fft.indexToFreq(highestIndex);
         fill(255);
         textSize(20);
@@ -75,7 +79,7 @@ public class Audio2 extends PApplet
         lerpedY = lerp(lerpedY, y, 0.1f);
         circle(200, y, 50);
         circle(300, lerpedY, 50);
-
+        */
 
 
     }
