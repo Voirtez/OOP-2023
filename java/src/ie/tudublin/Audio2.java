@@ -1,14 +1,14 @@
 package ie.tudublin;
 
 import ddf.minim.AudioBuffer;
-// import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 
-public class Audio2 extends PApplet{
+public class Audio2 extends PApplet
+{
 
     Minim m;
     AudioInput ai;
@@ -66,10 +66,17 @@ public class Audio2 extends PApplet{
         textSize(20);
         text("Freq: " + freq, 100, 100);
 
+        PitchSpeller ps = new PitchSpeller();
+        fill(255);
+        textSize(20);
+        text("Note: " + ps.spell(freq), 100, 150);
+
+        /*
         float y = map(freq, 1000.0f, 2500.0f, height, 0);
         lerpedY = lerp(lerpedY, y, 0.1f);
         circle(200, y, 50);
         circle(300, lerpedY, 50);
+        */
         
 
 
