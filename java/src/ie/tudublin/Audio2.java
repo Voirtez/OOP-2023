@@ -1,7 +1,6 @@
 package ie.tudublin;
 
 import ddf.minim.AudioBuffer;
-// import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -41,10 +40,10 @@ public class Audio2 extends PApplet{
         float half = height / 2;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
-            stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
+            stroke(map(i * 5, 0, ab.size(), 0, 255), 255, 255);
             lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.05f);
             float f = abs(lerpedBuffer[i] * half * 2.0f);
-            line(i, half + f, i, half - f);
+            line(i * 5, half, i * 5, half - f);
         }
 
         fft.forward(ab);
@@ -66,11 +65,12 @@ public class Audio2 extends PApplet{
         textSize(20);
         text("Freq: " + freq, 100, 100);
 
+        /*
         float y = map(freq, 1000.0f, 2500.0f, height, 0);
         lerpedY = lerp(lerpedY, y, 0.1f);
         circle(200, y, 50);
         circle(300, lerpedY, 50);
-        
+        */
 
 
 
