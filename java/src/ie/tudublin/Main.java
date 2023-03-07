@@ -5,7 +5,7 @@ public class Main
 	public static void life()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new Life());
+        processing.core.PApplet.runSketch(a, new Life());
 		
     }
 	

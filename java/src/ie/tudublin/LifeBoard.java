@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class LifeBoard
 {
     boolean[][] board;
-    boolean[][] next;
+    //boolean[][] next;
 
     private int size;
     PApplet p;
@@ -33,12 +33,13 @@ public class LifeBoard
         {
             for(int j = -1; j <= 1; j++)
             {
-                if ( ! (i == 0) && (j == 0))
+                if ( !(i == 0) && !(j == 0))
                 {
-                    if(getCell(row, col))
-                    {
-                        count++;
-                    }
+                    continue;
+                }
+                if(getCell(row + i, col + j))
+                {
+                    count++;
                 }
             }
         }
@@ -48,6 +49,8 @@ public class LifeBoard
 
     public void applyRules()
     {
+        boolean[][] next = new boolean[size][size];
+
         for(int row = 0; row < size; row++)
         {
             for(int col = 0; col < size; col++)
@@ -58,28 +61,29 @@ public class LifeBoard
                 // 2-3 survives
                 // dead with 3 neighbours comes to life
 
-                if(board[row][col])
+
+                if(count < 2 || count > 3)
                 {
-                    if(count == 2 || count == 3)
-                    {
-                        next[row][col] = true;
-                    }
-                    else
-                    {
-                        next[row][col] = false;
-                    }
+                    next[row][col] = false;
+                }
+                    
+                if(count == 2 || count == 3)
+                {
+                    next[row][col] = true;
+                    continue;
+                }
+
+
+                if(count == 3)
+                {
+                    next[row][col] = true;
                 }
                 else
                 {
-                    if(count == 3)
-                    {
-                        next[row][col] = true;
-                    }
-                    else
-                    {
-                        next[row][col] = false;
-                    }
+                    next[row][col] = false;
+
                 }
+        
 
             }
 
@@ -130,6 +134,7 @@ public class LifeBoard
                 {
                     p.noFill();
                 }
+                
                 p.rect(x, y, cellWidth, cellWidth);
             }
         }
