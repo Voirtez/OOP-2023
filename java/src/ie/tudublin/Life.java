@@ -11,7 +11,7 @@ public class Life extends PApplet
 	{
 
 		//size(500, 500);
-		fullScreen(SPAN);
+		fullScreen();
 
 	}
 
