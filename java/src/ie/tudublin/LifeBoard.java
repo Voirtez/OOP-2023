@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class LifeBoard
 {
     boolean[][] board;
-    //boolean[][] next;
+    boolean[][] next;
 
     private int size;
     PApplet p;
@@ -22,7 +22,7 @@ public class LifeBoard
         }
         else
         {
-            return false;
+            return board[(row + size) % size][(col + size) % size];
         }
     }
 
@@ -33,10 +33,11 @@ public class LifeBoard
         {
             for(int j = -1; j <= 1; j++)
             {
-                if ( !(i == 0) && !(j == 0))
+                if (i == 0 && j == 0)
                 {
                     continue;
                 }
+
                 if(getCell(row + i, col + j))
                 {
                     count++;
@@ -49,8 +50,6 @@ public class LifeBoard
 
     public void applyRules()
     {
-        boolean[][] next = new boolean[size][size];
-
         for(int row = 0; row < size; row++)
         {
             for(int col = 0; col < size; col++)
@@ -62,26 +61,27 @@ public class LifeBoard
                 // dead with 3 neighbours comes to life
 
 
-                if(count < 2 || count > 3)
+                if(board[row][col])
                 {
-                    next[row][col] = false;
-                }
-                    
-                if(count == 2 || count == 3)
-                {
-                    next[row][col] = true;
-                    continue;
-                }
-
-
-                if(count == 3)
-                {
-                    next[row][col] = true;
+                    if(count == 2 || count == 3)
+                    {
+                        next[row][col] = true;
+                    }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
                 }
                 else
                 {
-                    next[row][col] = false;
-
+                    if(count == 3)
+                    {
+                        next[row][col] = true;
+                    }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
                 }
         
 
@@ -89,7 +89,8 @@ public class LifeBoard
 
         }
 
-        boolean temp[][] = board;
+        boolean temp[][];
+        temp = board;
         board = next;
         next = temp;
     }
@@ -98,6 +99,7 @@ public class LifeBoard
     {
         this.size = size;
         board = new boolean[size][size];
+        next = new boolean[size][size];
         this.p = p;
         cellWidth = p.width / (float)size;
     }
@@ -108,7 +110,7 @@ public class LifeBoard
         {
             for(int col = 0; col < size; col++)
             {
-                float dice = p.random(0, 1);
+                float dice = p.random(0.0f, 1.0f);
                 board[row][col] = (dice <= 0.5f);
             }
         }
@@ -117,7 +119,7 @@ public class LifeBoard
     public void render()
     {  
 
-        p.stroke(255);
+        //p.stroke(255);
         
         for(int row = 0; row < size; row++)
         {
@@ -128,10 +130,12 @@ public class LifeBoard
 
                 if(board[row][col])
                 {
-                    p.fill(0, 255, 0);
+                    p.noStroke();
+                    p.fill(255);
                 }
                 else
                 {
+                    p.noStroke();
                     p.noFill();
                 }
                 

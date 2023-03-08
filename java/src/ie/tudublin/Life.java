@@ -11,6 +11,7 @@ public class Life extends PApplet
 	{
 
 		size(500, 500);
+		//fullScreen(SPAN);
 
 	}
 
@@ -19,7 +20,7 @@ public class Life extends PApplet
 		frameRate(5);
 		colorMode(RGB);
 		background(0);
-		board = new LifeBoard(50, this);
+		board = new LifeBoard(100, this);
 		board.randomise();
 
 	}
