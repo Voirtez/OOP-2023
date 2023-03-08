@@ -10,17 +10,17 @@ public class Life extends PApplet
 	public void settings()
 	{
 
-		size(500, 500);
-		//fullScreen(SPAN);
+		//size(500, 500);
+		fullScreen(SPAN);
 
 	}
 
 	public void setup()
 	{
-		frameRate(5);
+		frameRate(165);
 		colorMode(RGB);
 		background(0);
-		board = new LifeBoard(100, this);
+		board = new LifeBoard(1000, this);
 		board.randomise();
 
 	}

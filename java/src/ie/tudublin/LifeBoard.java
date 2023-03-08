@@ -131,7 +131,7 @@ public class LifeBoard
                 if(board[row][col])
                 {
                     p.noStroke();
-                    p.fill(255);
+                    p.fill(p.random(0,255), p.random(0,255), p.random(0,255));
                 }
                 else
                 {
