@@ -30,26 +30,26 @@ public class Ship
 
         if(p.keyPressed)
         {
-            if(p.keyCode == PApplet.LEFT)
+            if(p.key == 'a')
             {
                 rot -= 0.1f;
             }
 
-            if(p.keyCode == PApplet.RIGHT)
+            if(p.key == 'd')
             {
                 rot += 0.1f;
             }
 
-            if(p.keyCode == PApplet.UP)
+            if(p.key == 'w')
             {
-                pos.x += forward.x;
-                pos.y += forward.y;
+                pos.x += forward.x * 2;
+                pos.y += forward.y * 2;
             }
 
-            if(p.keyCode == PApplet.DOWN)
+            if(p.key == 's')
             {
-                pos.x -= forward.x;
-                pos.y -= forward.y;
+                pos.x -= forward.x * 2;
+                pos.y -= forward.y * 2;
             }
         }
     }
@@ -82,7 +82,7 @@ public class Ship
         {
             p.stroke(255, 255, 255);
             p.line(pos.x + (forward.x * 25), pos.y + (forward.y * 25), pos.x + (forward.x * count) , pos.y + (forward.y * count));
-            
+
         }
         
 
