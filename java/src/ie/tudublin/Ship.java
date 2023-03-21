@@ -54,6 +54,40 @@ public class Ship
         }
     }
 
+
+    public int count = 25;
+    // Shoots a beam from the ship's nose
+    public void shoot()
+    {
+        if(p.keyPressed)
+        {
+            if(p.key == ' ')
+            {
+                count += 2;
+                
+            }
+
+        }
+
+        if(p.key != ' ' || ! p.keyPressed)
+        {
+            if(count > 25)
+            {
+                count -= 2;
+
+            }
+        }
+
+        if(count > 25)
+        {
+            p.stroke(255, 255, 255);
+            p.line(pos.x + (forward.x * 25), pos.y + (forward.y * 25), pos.x + (forward.x * count) , pos.y + (forward.y * count));
+            
+        }
+        
+
+    }
+
     public void render()
     {
         p.pushMatrix();
@@ -108,8 +142,5 @@ public class Ship
     {
         this.size = size;
     }
-
-
-    
 
 }

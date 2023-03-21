@@ -27,8 +27,11 @@ public class YASC extends PApplet
 		background(0);
 		ship.render();
 		ship.move();
+		ship.shoot();
 
+		/*
 		ship1.render();
 		ship1.move();
+		*/
 	}
 }
