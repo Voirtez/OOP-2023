@@ -56,6 +56,7 @@ public class Ship
 
 
     public int count = 25;
+    
     // Shoots a beam from the ship's nose
     public void shoot()
     {
