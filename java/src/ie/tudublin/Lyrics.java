@@ -8,8 +8,8 @@ public class Lyrics extends PApplet
     String songFileName = "MobyDuck.wav";
     String lyricsFileName = "MobyDuck.txt";
 
-    Minim minim;
-    AudioPlayer player;
+    Minim m;
+    AudioPlayer ap;
     String[] lyrics;
     float[] timestamps;
 
@@ -23,9 +23,9 @@ public class Lyrics extends PApplet
 
     public void setup()
     {
-        minim = new Minim(this);
-        player = minim.loadFile(songFileName, 1024);
-        player.play();
+        m = new Minim(this);
+        ap = m.loadFile(songFileName, 1024);
+        ap.play();
 
         lyrics = loadStrings(lyricsFileName);
         timestamps = new float[lyrics.length];
@@ -55,9 +55,9 @@ public class Lyrics extends PApplet
         background(0);
         fill(255);
 
-        if(player.isPlaying())
+        if(ap.isPlaying())
         {
-            float currentTime = player.position() / 1000.0f;
+            float currentTime = ap.position() / 1000.0f;
 
             while(currentLine < timestamps.length - 1 && currentTime >= timestamps[currentLine + 1])
             {
