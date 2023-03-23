@@ -1,70 +1,78 @@
 package ie.tudublin;
 
-import java.util.ArrayList;
-
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
+import ddf.minim.*;
 import processing.core.PApplet;
 
 public class Lyrics extends PApplet
 {
-    Minim m;
-    AudioPlayer ap;
-    ArrayList<String> lyrics;
+    String songFileName = "MobyDuck.wav";
+    String lyricsFileName = "MobyDuck.txt";
+
+    Minim minim;
+    AudioPlayer player;
+    String[] lyrics;
+    float[] timestamps;
 
     int currentLine = 0;
-    int lineStartTime;
+    boolean isPlaying = false;
 
     public void settings()
     {
         fullScreen(SPAN);
-
     }
 
     public void setup()
     {
-        m = new Minim(this);
-        ap = m.loadFile("MobyDuck.wav");
-        lyrics = new ArrayList<String>();
-        loadLyrics();
+        minim = new Minim(this);
+        player = minim.loadFile(songFileName, 1024);
+        player.play();
 
-        ap.play();
-        lineStartTime = millis();
-        
+        lyrics = loadStrings(lyricsFileName);
+        timestamps = new float[lyrics.length];
+
+        for(int i = 0; i < lyrics.length; i++)
+        {
+            timestamps[i] = parseTimeStamp(lyrics[i]);
+        }
+
+        isPlaying = true;
+
     }
 
-    private void loadLyrics()
+    private float parseTimeStamp(String line)
     {
-        String[] lines = loadStrings("MobyDuck.txt");
-        for(String line:lines)
-        {
-            lyrics.add(line);
-        }
+        String timestampStr = line.substring(line.indexOf("(") + 1, line.indexOf(")"));
+        String[] timestampParts = timestampStr.split(":");
+
+        float minutes = Float.parseFloat(timestampParts[0]);
+        float seconds = Float.parseFloat(timestampParts[1]);
+
+        return minutes * 60 + seconds;
     }
 
     public void draw()
     {
         background(0);
         fill(255);
-        textSize(32);
-        textAlign(CENTER, CENTER);
 
-        int elpaspedTime = millis() - lineStartTime;
-        if (elpaspedTime > 5000)
+        if(player.isPlaying())
         {
-            currentLine ++;
-            lineStartTime = millis();
-        }
+            float currentTime = player.position() / 1000.0f;
 
-        if(currentLine < lyrics.size())
-        {
-            String currentLyric = lyrics.get(currentLine);
-            text(currentLyric, width / 2, height / 2);
+            while(currentLine < timestamps.length - 1 && currentTime >= timestamps[currentLine + 1])
+            {
+                currentLine++;
+            }
+
+            textAlign(CENTER);
+            textSize(32);
+            text(lyrics[currentLine].replaceAll("\\(.*?\\) ?", ""), width / 2, height / 2);
+
+
         }
         else
         {
-            ap.pause();
+            isPlaying = false;
         }
     }
-
 }
