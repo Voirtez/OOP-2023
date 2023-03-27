@@ -13,6 +13,8 @@ public class Ship
     private PApplet p;
     private float halfSize;
 
+    YASC yasc;
+
     public Ship(float x, float y, float size, int c, PApplet p)
     {
         pos = new PVector(x, y);
@@ -30,64 +32,38 @@ public class Ship
 
         if(p.keyPressed)
         {
-            if(p.key == 'a')
+            if(p.keyCode == PApplet.LEFT)
             {
                 rot -= 0.1f;
             }
 
-            if(p.key == 'd')
+            if(p.keyCode == PApplet.RIGHT)
             {
                 rot += 0.1f;
             }
 
-            if(p.key == 'w')
+            if(p.keyCode == PApplet.UP)
             {
                 pos.x += forward.x * 2;
                 pos.y += forward.y * 2;
             }
 
-            if(p.key == 's')
+            if(p.keyCode == PApplet.DOWN)
             {
                 pos.x -= forward.x * 2;
                 pos.y -= forward.y * 2;
             }
-        }
-    }
 
-
-    public int count = 25;
-    
-    // Shoots a beam from the ship's nose
-    public void shoot()
-    {
-        if(p.keyPressed)
-        {
-            if(p.key == ' ')
+            if(yasc.keys[' '])
             {
-                count += 2;
+                PVector inFront = PVector.add(pos, PVector.mult(forward, 30));
+                Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
                 
-            }
-
-        }
-
-        if(p.key != ' ' || ! p.keyPressed)
-        {
-            if(count > 25)
-            {
-                count -= 2;
-
+                ((YASC)p).bullets.add(b);
             }
         }
-
-        if(count > 25)
-        {
-            p.stroke(255, 255, 255);
-            p.line(pos.x + (forward.x * 25), pos.y + (forward.y * 25), pos.x + (forward.x * count) , pos.y + (forward.y * count));
-
-        }
-        
-
     }
+
 
     public void render()
     {
