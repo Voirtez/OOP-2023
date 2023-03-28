@@ -3,6 +3,7 @@ package ie.tudublin;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class YASC extends PApplet
 {
@@ -48,7 +49,7 @@ public class YASC extends PApplet
 		ship1.render();
 		ship1.move();
 
-		for(int i = bullets.size(); i >= 0; i--)
+		for(int i = bullets.size() - 1; i >= 0; i--)
 		{
 			Bullet b = bullets.get(i);
 			b.render();

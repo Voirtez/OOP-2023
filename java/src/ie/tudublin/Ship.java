@@ -7,22 +7,20 @@ public class Ship
 {
     private PVector pos;
     private PVector forward;
+    private PApplet p;
     private float rot;
     private int c;
     private float size;
-    private PApplet p;
     private float halfSize;
-
-    YASC yasc;
 
     public Ship(float x, float y, float size, int c, PApplet p)
     {
         pos = new PVector(x, y);
         forward = new PVector(0, -1);
         this.size = size;
+        halfSize = size / 2;
         this.c = c;
         this.p = p;
-        halfSize = size / 2;
     }
 
     public void move()
@@ -30,38 +28,38 @@ public class Ship
         forward.x = PApplet.sin(rot);
         forward.y = -PApplet.cos(rot);
 
-        if(p.keyPressed)
+        YASC yasc = (YASC)p;
+
+        if(yasc.keys[PApplet.LEFT])
         {
-            if(p.keyCode == PApplet.LEFT)
-            {
-                rot -= 0.1f;
-            }
-
-            if(p.keyCode == PApplet.RIGHT)
-            {
-                rot += 0.1f;
-            }
-
-            if(p.keyCode == PApplet.UP)
-            {
-                pos.x += forward.x * 2;
-                pos.y += forward.y * 2;
-            }
-
-            if(p.keyCode == PApplet.DOWN)
-            {
-                pos.x -= forward.x * 2;
-                pos.y -= forward.y * 2;
-            }
-
-            if(yasc.keys[' '])
-            {
-                PVector inFront = PVector.add(pos, PVector.mult(forward, 30));
-                Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
-                
-                ((YASC)p).bullets.add(b);
-            }
+            rot -= 0.1f;
         }
+
+        if(yasc.keys[PApplet.RIGHT])
+        {
+            rot += 0.1f;
+        }
+
+        if(yasc.keys[PApplet.UP])
+        {
+            pos.x += forward.x;
+            pos.y += forward.y;
+        }
+
+        if(yasc.keys[PApplet.DOWN])
+        {
+            pos.x -= forward.x;
+            pos.y -= forward.y;
+        }
+
+        if(yasc.keys[' '])
+        {
+            PVector inFront = PVector.add(pos, PVector.mult(forward, 30));
+            Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
+                
+            ((YASC)p).bullets.add(b);
+        }
+        
     }
 
 

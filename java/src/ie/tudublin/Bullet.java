@@ -29,7 +29,7 @@ public class Bullet
         p.stroke(c, 255, 255);
         p.translate(pos.x, pos.y);
         p.rotate(rot);
-        p.line(0,-5, 0, 5);
+        p.line(0, -5, 0, 5);
         p.popMatrix();
 
     }
