@@ -46,8 +46,8 @@ public class YASC extends PApplet
 		ship.render();
 		ship.move();
 
-		ship1.render();
-		ship1.move();
+		//ship1.render();
+		//ship1.move();
 
 		for(int i = bullets.size() - 1; i >= 0; i--)
 		{

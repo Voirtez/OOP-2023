@@ -12,6 +12,9 @@ public class Bullet
     PApplet p;
     int c;
 
+    int timeToLive = 5000;
+    int creationTime = 0;
+
     public Bullet(float x, float y, float rot, int c, PApplet p)
     {
         pos = new PVector(x, y);
@@ -20,6 +23,7 @@ public class Bullet
         this.p = p;
         this.rot = rot;
         this.c = c;
+        creationTime = p.millis();
 
     }
 
@@ -41,7 +45,36 @@ public class Bullet
 
         pos.add(PVector.mult(forward, speed));
 
+        /*
         if(pos.x < 0 || pos.x > p.width || pos.y < 0 || pos.y > p.height)
+        {
+            ((YASC)p).bullets.remove(this);
+        }
+        */
+
+        if(pos.x < 0)
+        {
+            pos.x = p.width;
+        }
+
+        if(pos.y < 0)
+        {
+            pos.y = p.height;
+        }
+
+        if(pos.x > p.width)
+        {
+            pos.x = 0;
+        }
+
+        if(pos.y > p.height)
+        {
+            pos.y = 0;
+        }
+
+        int now = p.millis();
+
+        if(now - creationTime > timeToLive)
         {
             ((YASC)p).bullets.remove(this);
         }

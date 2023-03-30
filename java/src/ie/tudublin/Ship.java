@@ -13,6 +13,12 @@ public class Ship
     private float size;
     private float halfSize;
 
+    int fireRate = 5;
+    int toPass = 1000 / fireRate;
+    int elapsed = 1000;
+
+
+
     public Ship(float x, float y, float size, int c, PApplet p)
     {
         pos = new PVector(x, y);
@@ -29,6 +35,8 @@ public class Ship
         forward.y = -PApplet.cos(rot);
 
         YASC yasc = (YASC)p;
+
+
 
         if(yasc.keys[PApplet.LEFT])
         {
@@ -52,15 +60,24 @@ public class Ship
             pos.y -= forward.y;
         }
 
-        if(yasc.keys[' '])
+        if(yasc.keys[' '] && elapsed > toPass)
         {
+            elapsed = 0;
             PVector inFront = PVector.add(pos, PVector.mult(forward, 30));
             Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
                 
             ((YASC)p).bullets.add(b);
         }
+
+        int now = p.millis();
+        timeDelta = now - last;
+        elapsed += timeDelta;
+        last = now;
         
     }
+
+    int last = 0;
+    int timeDelta = 0;
 
 
     public void render()
