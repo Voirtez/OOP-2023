@@ -11,14 +11,14 @@ public class Lyrics extends PApplet
     Minim m;
     AudioPlayer ap;
     String[] lyrics;
-    float[] timestamps;
+    int[] timestamps;
 
     int currentLine = 0;
     boolean isPlaying = false;
 
     public void settings()
     {
-        fullScreen(SPAN);
+        fullScreen();
     }
 
     public void setup()
@@ -28,7 +28,7 @@ public class Lyrics extends PApplet
         ap.play();
 
         lyrics = loadStrings(lyricsFileName);
-        timestamps = new float[lyrics.length];
+        timestamps = new int[lyrics.length];
 
         for(int i = 0; i < lyrics.length; i++)
         {
@@ -39,15 +39,10 @@ public class Lyrics extends PApplet
 
     }
 
-    private float parseTimeStamp(String line)
+    private int parseTimeStamp(String line)
     {
-        String timestampStr = line.substring(line.indexOf("(") + 1, line.indexOf(")"));
-        String[] timestampParts = timestampStr.split(":");
-
-        float minutes = Float.parseFloat(timestampParts[0]);
-        float seconds = Float.parseFloat(timestampParts[1]);
-
-        return minutes * 60 + seconds;
+        int timestamp = Integer.parseInt(line.substring(line.indexOf("(") + 1, line.indexOf(")")));
+        return timestamp;
     }
 
     public void draw()
@@ -57,7 +52,7 @@ public class Lyrics extends PApplet
 
         if(ap.isPlaying())
         {
-            float currentTime = ap.position() / 1000.0f;
+            float currentTime = ap.position();
 
             while(currentLine < timestamps.length - 1 && currentTime >= timestamps[currentLine + 1])
             {

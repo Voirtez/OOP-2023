@@ -6,7 +6,7 @@ public class Wave extends PApplet
 {
     public void settings()
     {
-        fullScreen(SPAN);
+        fullScreen();
 
     }
 

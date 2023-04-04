@@ -21,10 +21,16 @@ public class Main
 		processing.core.PApplet.runSketch( a, new LyricsWave());
 	}
 
+	public static void lyricswave2()
+	{
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new LyricsWave2());
+	}
+
 	public static void main(String[] args)
 	{
 
-		lyricswave();	
+		lyricswave2();	
 	}
 	
 }
