@@ -105,9 +105,11 @@ public class LyricsWave3 extends PApplet {
             }
     
             // remove lines that have already been drawn and are offscreen
-            for (int i = 0; i < lyricLines.size(); i++) {
+            for (int i = 0; i < lyricLines.size(); i++)
+            {
                 LyricLine currentLyricLine = lyricLines.get(i);
-                if (currentLyricLine.isDrawn && textWidth(currentLyricLine.lyric) + charSpacing * currentLyricLine.lyric.length() < -xOffset) {
+                if (currentLyricLine.isDrawn && textWidth(currentLyricLine.lyric) + charSpacing * currentLyricLine.lyric.length() < -xOffset)
+                {
                     lyricLines.remove(i);
                     i--; // decrement i to account for the removed element
                 }
@@ -119,12 +121,14 @@ public class LyricsWave3 extends PApplet {
       
     
     
-    class LyricLine {
+    class LyricLine
+    {
         String lyric;
         float startTime;
         boolean isDrawn;
         
-        LyricLine(String lyric, float startTime) {
+        LyricLine(String lyric, float startTime)
+        {
             this.lyric = lyric;
             this.startTime = startTime;
             this.isDrawn = false;
