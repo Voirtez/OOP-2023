@@ -33,10 +33,16 @@ public class Main
 		processing.core.PApplet.runSketch( a, new LyricsWave3());
 	}
 
+	public static void lyricswave4()
+	{
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new LyricsWave4());
+	}
+
 	public static void main(String[] args)
 	{
 
-		lyricswave3();	
+		lyricswave4();	
 	}
 	
 }
