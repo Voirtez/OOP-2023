@@ -117,6 +117,7 @@ public class LyricsWave3 extends PApplet
                 currentLyricLine.isDrawn = true;
             }
     
+            
             // remove lines that have already been drawn and are offscreen
             for (int i = 0; i < lyricLines.size(); i++)
             {
